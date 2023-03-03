@@ -10,21 +10,22 @@ class Item < ApplicationRecord
   has_one_attached  :image
   #has_one          :order
 
-  with_options numericality: { other_than: 1 } do
-
+  with_options presence: true do
+    validates :image
+    validates :item_name
+    validates :content
   end
 
-  validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :price, presence: true
+  validates :price, numericality: { with: /\A[0-9]+\z/, message: "Input half-width characters" }
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "out of setting range" }
 
-  with_options presence: true do
-    validates :item_name #can't be blank
-    validates :content#, format: {with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "can't be blank"}
-    validates :condition_id# format: {with: /\A[ァ-ヶー]+\z/, message: "Input full-width katakana characters"}
-    validates :postage_id #, format: {with: /\A[ァ-ヶー]+\z/, message: "Input full-width katakana characters"}
-    validates :prefecture_id
-    validates :shipping_day_id
-    validates :price #Input half-width characters
-    validates :image #can't be blank
+  with_options numericality: { other_than: 0 } do
+    validates :category_id, numericality: {message: "can't be blank"}
+    validates :condition_id, numericality: {message: "can't be blank"}
+    validates :postage_id, numericality: {message: "can't be blank"}
+    validates :prefecture_id, numericality: {message: "can't be blank"}
+    validates :shipping_day_id, numericality: {message: "can't be blank"}
   end
 
 end
