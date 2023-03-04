@@ -11,5 +11,5 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer     :price,           null: false
       t.timestamps
     end
-  endrail
+  end
 end
