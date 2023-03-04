@@ -1,6 +1,6 @@
 function calculation (){
   const input = document.getElementById("item-price");
-  input.addEventListener("keyup", (e) => {
+  input.addEventListener("click", (e) => {
     e.preventDefault();
     const itemPrice = input.value
     const taxRate = 0.1;
