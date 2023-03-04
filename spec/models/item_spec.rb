@@ -70,7 +70,7 @@ RSpec.describe Item, type: :model do
       it '価格が全角入力では出品できない' do
         @item.price = '１０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price Input half-width characters"
+        expect(@item.errors.full_messages).to include "Price input half-width characters"
       end
 
       it '価格が300円未満では出品できない' do
