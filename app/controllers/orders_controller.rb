@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
   end
 
   def user_check
-    if current_user.id = @item.user.id
+    if @item.user == current_user
       redirect_to root_path
     end
   end

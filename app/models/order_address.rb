@@ -1,6 +1,6 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :token, :post_code, :prefecture_id, :city, :house_number, :building, :phone_number, :order_id, :user_id, :item_id, :number, :exp_month, :exp_year, :exp_year, :cvc
+  attr_accessor :token, :post_code, :prefecture_id, :city, :house_number, :building, :phone_number, :order_id, :user_id, :item_id
 
   with_options presence: true do
     validates :token
@@ -10,9 +10,9 @@ class OrderAddress
     validates :city
     validates :house_number
     validates :phone_number, numericality: { only_integer: true, message: "input half-width characters" }
-    validates :phone_number, format: {with: /\A0[0-9]\d{8,9}\z/, message: "is too short"}
   end
   validates :prefecture_id, numericality: { other_than: 0 , message: "can't be blank" }
+  validates :phone_number, format: {with: /\A0[0-9]\d{8,9}\z/, message: "is too short"}
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
