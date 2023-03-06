@@ -2,8 +2,10 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item
   before_action :user_check
+  before_action :sold_check
   
   def index
+    user_check
     @order_address = OrderAddress.new
   end
 
@@ -39,6 +41,12 @@ class OrdersController < ApplicationController
 
   def user_check
     if @item.user == current_user
+      redirect_to root_path
+    end
+  end
+
+  def sold_check
+    if  @item.order.present?
       redirect_to root_path
     end
   end
