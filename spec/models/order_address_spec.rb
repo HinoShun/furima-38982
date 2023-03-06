@@ -75,16 +75,23 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include "Phone number can't be blank"
       end
 
+
       it '電話番号の入力が半角入力でないと購入できない' do
         @order_address.phone_number = '０９０１２３４５６７８'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include "Phone number input half-width characters"
       end
 
-      it '電話番号の入力が少ないと購入できない' do
-        @order_address.phone_number = '012345678'
+      it '電話番号の入力が少ない（9桁）と購入できない' do
+        @order_address.phone_number = '123456789'
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include "Phone number is too short"
+        expect(@order_address.errors.full_messages).to include "Phone number is invalid"
+      end
+
+      it '電話番号の入力が多い（12桁）と購入できない' do
+        @order_address.phone_number = '123456789012'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include "Phone number is invalid"
       end
 
     end

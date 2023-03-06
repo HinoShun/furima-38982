@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
   before_action :sold_check
   
   def index
-    user_check
     @order_address = OrderAddress.new
   end
 

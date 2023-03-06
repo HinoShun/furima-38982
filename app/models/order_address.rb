@@ -12,7 +12,7 @@ class OrderAddress
     validates :phone_number, numericality: { only_integer: true, message: "input half-width characters" }
   end
   validates :prefecture_id, numericality: { other_than: 0 , message: "can't be blank" }
-  validates :phone_number, format: {with: /\A0[0-9]\d{8,9}\z/, message: "is too short"}
+  validates :phone_number, format: {with: /\A[0-9]{10,11}\z/, message: "is invalid"}
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
