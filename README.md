@@ -30,7 +30,7 @@ http://54.199.241.193/
 
 
 ## テスト用アカウント等
-●Basic認証　※Basic認証は一部ページのみ  
+●Basic認証  
     ・ID: hino  
     ・パスワード: hinohino  
 
@@ -67,9 +67,9 @@ http://54.199.241.193/
   セキュリティコード：123  
 4.必要情報入力後【購入】ボタン押下  
 
-# テーブル設計
+## テーブル設計
 
-## users テーブル
+### users テーブル
 
 | Column              | Type   | Options                   |
 | ------------------- | ------ | ------------------------- |
@@ -82,13 +82,13 @@ http://54.199.241.193/
 | first_name_reading  | string | null: false               |
 | birthday            | date   | null: false               |
 
-### Association
+#### Association
 
 - has_many :items
 - has_many :orders
 
 
-## items テーブル
+### items テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
@@ -102,27 +102,27 @@ http://54.199.241.193/
 | price           | integer    | null: false                    |
 | user            | references | null: false, foreign_key: true |
 
-### Association
+#### Association
 
 - belongs_to  :user
 - has_one     :order
 
 
-## orders テーブル
+### orders テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
 | user            | references | null: false, foreign_key: true |
 | item            | references | null: false, foreign_key: true |
 
-### Association
+#### Association
 
 - belongs_to :user
 - belongs_to :item
 - has_one    :address
 
 
-## addresses テーブル
+### addresses テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
@@ -134,6 +134,6 @@ http://54.199.241.193/
 | phone_number  | string     | null: false                    |
 | order         | references | null: false, foreign_key: true |
 
-### Association
+#### Association
 
 - belongs_to :order
